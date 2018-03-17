@@ -1,0 +1,69 @@
+/*
+dark blue - #3b627e	(59,98,126)
+medium blue - #5799c3	(87,153,195)
+blue - #8dcfda	(141,207,218)
+light blue - #b7f0ed	(183,240,237)
+gray - #d3dadb	(211,218,219)
+
+light pink - #fbd9f6	(251,217,246)
+light pink - #f0c9ee	(240,201,238)
+light coral - #fbc3c3	(251,195,195)
+coral - #ec9595	(236,149,149)
+deep coral - #dd6262	(221,98,98)
+*/
+
+/* font-family: 'Londrina Shadow', cursive;
+font-family: 'Open Sans', sans-serif;
+font-family: 'Chathura', sans-serif; */
+
+/* Typography and colors */
+body{
+  background-color: #d3dadb;
+  font-family: 'Chathura', sans-serif;
+  font-weight: 100;
+  font-size: 1.6em;
+  color: #5799c3;
+}
+h1{
+  font-family: 'Londrina Shadow', cursive;
+  color: #dd6262;
+}
+h2{
+  background-color: #ec9595;
+  font-family: 'Chathura', sans-serif;
+  text-transform: uppercase;
+  font-weight: 200;
+  color: #b7f0ed;
+  padding: 0 20px;
+}
+h3{
+  font-family: 'Open Sans', sans-sans-serif;
+  font-weight: 100;
+  font-size: .8em;
+  color: #dd6262;
+}
+
+/* Images */
+.t_profile img {
+  width: 140px;
+  height: auto;
+  border-radius: 50%;
+}
+
+/* Box Styling */
+.boxContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-around;
+}
+.teacherBox{
+  background-color: #FFFFFF;
+  border: 2px solid #ec9595;
+  border-radius: 10px;
+  display: flex;
+  min-width: 200px
+  flex-direction: column;
+  align-items: center;
+}
