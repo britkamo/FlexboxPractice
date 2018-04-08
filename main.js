@@ -2,6 +2,10 @@
 var teacherFullName = 'Sally Jones';
 var departmentName = 'Physics';
 var ratingsArray = [3.5, 5, 4.2, 5, 1, 1, 1, 1];
+var coursesArray = [["Biology", "Science"],["Physics", "Science"],["Calculus", "Mathematics"],["Algebra", "Mathematics"],["Econ 101", "Business"],["Photography", "Art"],["World History", "History"],["Sculpture", "Art"],["Astronomy", "Science"]];
+var filteredCoursesArray = [];
+var filteredCoursesString = "";
+var arrayTotal = 0;
 // var rating1 = 3.4;
 // var rating2 = 5;
 // var rating3 = 4.2;
@@ -19,9 +23,37 @@ var studentCourse2 = 'Econ 101';
 
 var semester = 'Fall 2018';
 
+var userFilter = prompt("Please enter a department to view available courses.", "Example: Science");
+
+if(userFilter != null || userFilter != ""){
+  filterCourses(coursesArray,userFilter);
+  if(filteredCoursesArray[0]){
+    filteredCoursesString = "Courses available in the " + userFilter + " department include: \n";
+    for ( i=0; i< filteredCoursesArray.length; i++){
+        //console.log(filteredCoursesArray[i]);
+        filteredCoursesString += filteredCoursesArray[i][0] + "\n";
+    }
+    alert(filteredCoursesString);
+  } else {
+    filteredCoursesString = "Sorry, that department doesn't exist or has no available courses!";
+    var userFilter2 = prompt("Please try again. Enter a department to view available courses.", "Example: Art");
+    if(userFilter2 != null || userFilter2 != ""){
+      filterCourses(coursesArray,userFilter2);
+      if(filteredCoursesArray[0]){
+        filteredCoursesString = "Courses available in the " + userFilter2 + " department include: \n";
+        for ( i=0; i< filteredCoursesArray.length; i++){
+            //console.log(filteredCoursesArray[i]);
+            filteredCoursesString += filteredCoursesArray[i][0] + "\n";
+        }
+        alert(filteredCoursesString);
+      }
+    }
+  }
+}
+/*
 var userRating = prompt("We would like for you to review . Please enter a rating between 0.0 - 5.0.", "0-5");
 
-// I think this could be a function or loop somehow...
+
 if(userRating == null) {
   alert("You can always leave a review later!");
 } else if(userRating >= 0 && userRating <= 5) {
@@ -39,6 +71,8 @@ if(userRating == null) {
     alert("You can always leave a review later!");
   }
 }
+*/
+
 // Add a new rating entered bye the user to the passed array
 function addTeacherRating(existingArray, newRating) {
   existingArray.push(newRating);
@@ -48,7 +82,7 @@ function addTeacherRating(existingArray, newRating) {
 function averageStuff(existingArray) {
   //var averageRating; //= (rating1 + rating2 + rating3) / 3;
   var sumOfNumbers = 0;
-  var arrayTotal = existingArray.length;
+  arrayTotal = existingArray.length;
   for( i=0; i < arrayTotal; i++) {
     sumOfNumbers += existingArray[i];
   }
@@ -56,6 +90,23 @@ function averageStuff(existingArray) {
   roundedRating = Math.round(averageRating * 10) / 10;
   return roundedRating;
 }
+//function to filter courses by the department
+function filterCourses(existingArray, selectedDepartment){
+  //loop through all arrays in the selected array
+  arrayTotal = existingArray.length;
+   for(i=0; i< arrayTotal; i++) {
+     //if existingArray.nestedArray[1] value is equal to the selectedDepartment value
+     //console.log(existingArray[i][1]);
+     if(existingArray[i][1] == selectedDepartment){
+       //push that value to a new array filteredArray
+       filteredCoursesArray.push(existingArray[i]);
+       //console.log(existingArray[i]);
+     }
+   }
+  //return the filteredCoursesArray
+  return filteredCoursesArray;
+}
+
 // console.log('Teacher: ' + teacherFullName);
 // console.log('Department: ' + departmentName);
 // console.log('Ratings: ' + rating1 + ', ' + rating2 + ', ' + rating3);
