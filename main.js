@@ -1,7 +1,26 @@
 // console.log('This file is linked!')
-var teacherFullName = 'Sally Jones';
-var departmentName = 'Physics';
-var ratingsArray = [3.5, 5, 4.2, 5, 1, 1, 1, 1];
+var teacher = {
+  fullName: 'Sally Jones',
+  departmentName: 'Physics',
+  ratingsArray: [3.5, 5, 4.2, 5, 1, 1, 1, 1],
+  addRating: function (newRating) {
+    this.ratingsArray.push(newRating);
+  },
+  averageTeacherRating: function () {
+    //var averageRating; //= (rating1 + rating2 + rating3) / 3;
+    var sumOfNumbers = 0;
+    arrayTotal = this.ratingsArray.length;
+    for( i=0; i < arrayTotal; i++) {
+      sumOfNumbers += this.ratingsArray[i];
+    }
+    averageRating = sumOfNumbers / arrayTotal;
+    roundedRating = Math.round(averageRating * 10) / 10;
+    return roundedRating;
+  }
+}
+// var teacherFullName = 'Sally Jones';
+// var departmentName = 'Physics';
+// var ratingsArray = [3.5, 5, 4.2, 5, 1, 1, 1, 1];
 var coursesArray = [["Biology", "Science"],["Physics", "Science"],["Calculus", "Mathematics"],["Algebra", "Mathematics"],["Econ 101", "Business"],["Photography", "Art"],["World History", "History"],["Sculpture", "Art"],["Astronomy", "Science"]];
 var filteredCoursesArray = [];
 var filteredCoursesString = "";
@@ -22,6 +41,33 @@ var studentCourse1 = 'Calculus';
 var studentCourse2 = 'Econ 101';
 
 var semester = 'Fall 2018';
+var currentYear = 2018;
+/*var getGradYear = prompt("Please enter the college graduation year.", "Example: 2018");
+var getGradMonth = prompt("Please enter the college graduation month.", "Example: May or December");
+
+var welcomeCollegeStudent = function(studentClass){
+  alert("Welcome " + studentClass)+ "!";
+}
+var welcomeHsStudent = function(studentClass){
+  alert("You're still a " + studentClass + " in high school!");
+}
+
+if(getGradYear != null || getGradYear != ""){
+  //if in college,
+  //the graduation year will be within 4 years of the current year - 18,19,20,21
+  //if in high school,
+  //the graduation year will be within 8 years of the current year - 22,23,24,25
+  if (getGradYear < 2021) {
+    //console.log(welcomeCollegeStudent("Freshman"));
+    console.log(welcomeStudentsByGraduatingClass(getGradMonth, getGradYear, welcomeCollegeStudent));
+  } else if(getGradYear < 2025) {
+    //console.log(welcomeHsStudent("Sophomore"));
+    console.log(welcomeStudentsByGraduatingClass(getGradMonth, getGradYear, welcomeHsStudent));
+  } else {
+    console.log("Whoa, college is some years away...");
+  }
+}
+
 
 var userFilter = prompt("Please enter a department to view available courses.", "Example: Science");
 
@@ -50,16 +96,20 @@ if(userFilter != null || userFilter != ""){
     }
   }
 }
-/*
+*/
 var userRating = prompt("We would like for you to review . Please enter a rating between 0.0 - 5.0.", "0-5");
 
 
 if(userRating == null) {
   alert("You can always leave a review later!");
 } else if(userRating >= 0 && userRating <= 5) {
-  addTeacherRating(ratingsArray, userRating);
+  userRating = Math.floor(userRating);
+  //addTeacherRating(ratingsArray, userRating);
+  console.log(teacher.averageTeacherRating());
+  teacher.addRating(userRating);
   //averageStuff(ratingsArray);
-  alert("Thanks for your review! <teacher's name> average rating is now: " + averageRating);
+  console.log(teacher.averageTeacherRating());
+  alert("Thanks for your review! " + teacher.fullName + "'s average rating is now: " + teacher.averageTeacherRating());
 } else {
   userRating = prompt("We won't ask again but would really appreciate your review . Please make sure your rating is between 0.0 - 5.0.", "0-5");
   if(userRating == null) {
@@ -71,25 +121,25 @@ if(userRating == null) {
     alert("You can always leave a review later!");
   }
 }
-*/
 
-// Add a new rating entered bye the user to the passed array
-function addTeacherRating(existingArray, newRating) {
-  existingArray.push(newRating);
-  return existingArray;
-}
+
+// Add a new rating entered by the user to the passed array
+// function addTeacherRating(existingArray, newRating) {
+//   existingArray.push(newRating);
+//   return existingArray;
+// }
 // take some numbers and find the average
-function averageStuff(existingArray) {
-  //var averageRating; //= (rating1 + rating2 + rating3) / 3;
-  var sumOfNumbers = 0;
-  arrayTotal = existingArray.length;
-  for( i=0; i < arrayTotal; i++) {
-    sumOfNumbers += existingArray[i];
-  }
-  averageRating = sumOfNumbers / arrayTotal;
-  roundedRating = Math.round(averageRating * 10) / 10;
-  return roundedRating;
-}
+// function averageStuff(existingArray) {
+//   //var averageRating; //= (rating1 + rating2 + rating3) / 3;
+//   var sumOfNumbers = 0;
+//   arrayTotal = existingArray.length;
+//   for( i=0; i < arrayTotal; i++) {
+//     sumOfNumbers += existingArray[i];
+//   }
+//   averageRating = sumOfNumbers / arrayTotal;
+//   roundedRating = Math.round(averageRating * 10) / 10;
+//   return roundedRating;
+// }
 //function to filter courses by the department
 function filterCourses(existingArray, selectedDepartment){
   //loop through all arrays in the selected array
@@ -106,6 +156,32 @@ function filterCourses(existingArray, selectedDepartment){
   //return the filteredCoursesArray
   return filteredCoursesArray;
 }
+
+function welcomeStudentsByGraduatingClass(gradMonth, gradYear, gradGreet) {
+  var yearsLeft = gradYear - currentYear;
+  var currentClass = "";
+  switch(yearsLeft) {
+    case 0:
+    case 4:
+      currentClass = "Senior";
+      break;
+    case 1:
+    case 5:
+      currentClass = "Junior";
+      break;
+    case 2:
+    case 6:
+      currentClass = "Sophomore";
+      break;
+    case 3:
+    case 7:
+      currentClass = "Freshman";
+      break;
+  }
+  gradGreet(currentClass);
+}
+
+
 
 // console.log('Teacher: ' + teacherFullName);
 // console.log('Department: ' + departmentName);
