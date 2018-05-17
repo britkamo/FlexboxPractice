@@ -113,7 +113,7 @@ var currentYear = 2018;
 
 
 // USER PROMPTS ----------------------------------
-/*var getGradYear = prompt("Please enter the college graduation year.", "Example: 2018");
+var getGradYear = prompt("Please enter the college graduation year.", "Example: 2018");
 var getGradMonth = prompt("Please enter the college graduation month.", "Example: May or December");
 
 var welcomeCollegeStudent = function(studentClass){
@@ -134,12 +134,13 @@ if(getGradYear != null || getGradYear != ""){
   } else if(getGradYear < 2025) {
     //console.log(welcomeHsStudent("Sophomore"));
     console.log(welcomeStudentsByGraduatingClass(getGradMonth, getGradYear, welcomeHsStudent));
-  } else {
+  } else if (getGradYear > 2025){
     console.log("Whoa, college is some years away...");
+  } else {
+    console.log("Welcome visitor!");
   }
 }
 
-*/
 
 var userFilter = prompt("Please enter a department to view available courses.", "Example: Science");
 
