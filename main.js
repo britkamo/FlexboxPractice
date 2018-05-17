@@ -1,33 +1,101 @@
-// console.log('This file is linked!')
-var teacher = {
-  fullName: 'Sally Jones',
-  departmentName: 'Physics',
-  ratingsArray: [3.5, 5, 4.2, 5, 1, 1, 1, 1],
-  addRating: function (newRating) {
-    this.ratingsArray.push(newRating);
-  },
-  averageTeacherRating: function () {
-    //var averageRating; //= (rating1 + rating2 + rating3) / 3;
-    var sumOfNumbers = 0;
-    arrayTotal = this.ratingsArray.length;
-    for( i=0; i < arrayTotal; i++) {
-      sumOfNumbers += this.ratingsArray[i];
-    }
-    averageRating = sumOfNumbers / arrayTotal;
-    roundedRating = Math.round(averageRating * 10) / 10;
-    return roundedRating;
-  }
+// GLOBAL VARIABLES ------------------------------
+var arrayTotal = 0;
+
+// OBJECT PROTOTYPES -----------------------------
+
+// ---TEACHERS---
+var Teacher = function(fullName, departmentName, teacherCoursesArray, ratingsArray, addRating, averageTeacherRating){
+  this.fullName = fullName;
+  this.department = departmentName;
+  this.teacherCourses = teacherCoursesArray;
+  this.ratingsArray = ratingsArray;
 }
-// var teacherFullName = 'Sally Jones';
-// var departmentName = 'Physics';
-// var ratingsArray = [3.5, 5, 4.2, 5, 1, 1, 1, 1];
-var coursesArray = [["Biology", "Science"],["Physics", "Science"],["Calculus", "Mathematics"],["Algebra", "Mathematics"],["Econ 101", "Business"],["Photography", "Art"],["World History", "History"],["Sculpture", "Art"],["Astronomy", "Science"]];
+
+Teacher.prototype = {
+  addRating: function (newRating) {
+      this.ratingsArray.push(newRating);
+    },
+    averageTeacherRating: function () {
+      //var averageRating; //= (rating1 + rating2 + rating3) / 3;
+      var sumOfNumbers = 0;
+      arrayTotal = this.ratingsArray.length;
+      for( i=0; i < arrayTotal; i++) {
+        sumOfNumbers += this.ratingsArray[i];
+      }
+      averageRating = sumOfNumbers / arrayTotal;
+      roundedRating = Math.round(averageRating * 10) / 10;
+      return roundedRating;
+    }
+}
+// ---COURSES---
+var Course = function(course, department, teacher, semester){
+  this.courseTitle = course;
+  this.courseDepartment = department;
+  this.courseTeacher = teacher;
+  this.courseSemester = semester;
+}
+// ---STUDENTS---
+var Student = function(studentName, studentMajor, studentEmail, studentGpa, studentCourses){
+  this.fullName = studentName;
+  this.major = studentMajor;
+  this.email = studentEmail;
+  this.averageGPA = studentGpa;
+  this.coursesArray = studentCourses;
+}
+Student.prototype = {
+  addCourse: function (newCourse) {
+      this.coursesArray.push(newCourse);
+    },
+  dropCourse: function (courseToDrop) {
+      //create a boolean variable to track if any courses were removed
+      var courseRemovedBoolean = false;
+      //loop through all courses in the arrays
+      arrayTotal = this.coursesArray.length;
+      for( i=0; i < arrayTotal; i++) {
+        //if the course in the array is the course that will be dropped
+        if(this.coursesArray[i] == courseToDrop){
+          //remove that course and alert the user
+          this.coursesArray.splice(i, 1);
+          courseRemovedBoolean = true;
+          console.log(courseToDrop + " was successfully dropped.");
+          //assuming there will never be duplicate courses, no need to keep searching, exit the function
+          return;
+        }
+        //if no courses were removed, alert the user
+        if(courseRemovedBoolean == false){
+          console.log("You aren't currently taking this course. No courses were dropped.");
+        }
+      }
+
+    },
+  changeMajor: function (newMajor) {
+    this.major = newMajor;
+    console.log("Your major has been changed to: "+ this.major)
+    }
+}
+
+
+// OBJECT INSTANCES-------------------------------
+var teacherCarl = new Teacher("Carl Henderson", "History", ["World History", "Chinese Classics"], [5.0, 4.0, 4.5]);
+var teacherEmmeline = new Teacher("Emmeline Howe", "Science", ["Astro-Biology", "Science of Star Wars"], [5.0, 4.0, 4.5]);
+var teacherBrody = new Teacher("Brody Goodwin", "Mathematics", ["Calculus", "Algebra"], [5.0, 4.0, 4.5]);
+
+var course1 = new Course("Astro-Biology", "Science", teacherEmmeline, "Fall 2018");
+var course2 = new Course("World History", "History", teacherCarl, "Fall 2018");
+var course3 = new Course("Calculus", "Mathematics", teacherBrody, "Fall 2018");
+var course4 = new Course("Mathematical Sculpture", "Art", teacherBrody, "Spring 2019");
+var course5 = new Course("Physics", "Science", teacherEmmeline, "Spring 2019");
+
+//(studentName, studentMajor, studentEmail, studentGpa, studentCourses)
+var student1 = new Student("Tilly Johnson", "Mathematics", "tjohnson@CGE.edu", 3.5, [course1, course2]);
+var student2 = new Student("Lila Sullivan", "Biology", "lsullivan@CGE.edu", 3.6, [course1, course5]);
+var student3 = new Student("Bryson Mills", "Art", "bmills@CGE.edu", 3.4, [course2, course4]);
+
+// VARIABLES -------------------------------------
+var coursesArray = [course1, course2, course3, course4, course5];
 var filteredCoursesArray = [];
 var filteredCoursesString = "";
-var arrayTotal = 0;
-// var rating1 = 3.4;
-// var rating2 = 5;
-// var rating3 = 4.2;
+
 var averageRating; //= (rating1 + rating2 + rating3) / 3;
 var roundedRating; //= Math.round(averageRating * 10) / 10;
 var teacherCourse1 = 'Biology';
@@ -42,6 +110,9 @@ var studentCourse2 = 'Econ 101';
 
 var semester = 'Fall 2018';
 var currentYear = 2018;
+
+
+// USER PROMPTS ----------------------------------
 /*var getGradYear = prompt("Please enter the college graduation year.", "Example: 2018");
 var getGradMonth = prompt("Please enter the college graduation month.", "Example: May or December");
 
@@ -68,6 +139,7 @@ if(getGradYear != null || getGradYear != ""){
   }
 }
 
+*/
 
 var userFilter = prompt("Please enter a department to view available courses.", "Example: Science");
 
@@ -77,7 +149,7 @@ if(userFilter != null || userFilter != ""){
     filteredCoursesString = "Courses available in the " + userFilter + " department include: \n";
     for ( i=0; i< filteredCoursesArray.length; i++){
         //console.log(filteredCoursesArray[i]);
-        filteredCoursesString += filteredCoursesArray[i][0] + "\n";
+        filteredCoursesString += filteredCoursesArray[i].courseTitle + "\n";
     }
     alert(filteredCoursesString);
   } else {
@@ -89,14 +161,14 @@ if(userFilter != null || userFilter != ""){
         filteredCoursesString = "Courses available in the " + userFilter2 + " department include: \n";
         for ( i=0; i< filteredCoursesArray.length; i++){
             //console.log(filteredCoursesArray[i]);
-            filteredCoursesString += filteredCoursesArray[i][0] + "\n";
+            filteredCoursesString += filteredCoursesArray[i].courseTitle + "\n";
         }
         alert(filteredCoursesString);
       }
     }
   }
 }
-*/
+
 var userRating = prompt("We would like for you to review . Please enter a rating between 0.0 - 5.0.", "0-5");
 
 
@@ -105,41 +177,24 @@ if(userRating == null) {
 } else if(userRating >= 0 && userRating <= 5) {
   userRating = Math.floor(userRating);
   //addTeacherRating(ratingsArray, userRating);
-  console.log(teacher.averageTeacherRating());
-  teacher.addRating(userRating);
+  //console.log(teacherCarl.averageTeacherRating());
+  teacherCarl.addRating(userRating);
   //averageStuff(ratingsArray);
-  console.log(teacher.averageTeacherRating());
-  alert("Thanks for your review! " + teacher.fullName + "'s average rating is now: " + teacher.averageTeacherRating());
+  //console.log(teacherCarl.averageTeacherRating());
+  alert("Thanks for your review! " + teacherCarl.fullName + "'s average rating is now: " + teacherCarl.averageTeacherRating());
 } else {
   userRating = prompt("We won't ask again but would really appreciate your review . Please make sure your rating is between 0.0 - 5.0.", "0-5");
   if(userRating == null) {
     alert("You can always leave a review later!");
   } else if(userRating >= 0 && userRating <= 5) {
-    addTeacherRating(ratingsArray, userRating);
-    alert("Thanks for your review! <teacher's name> average rating is now: " + averageRating);
+    teacherCarl.addRating(userRating);
+    alert("Thanks for your review! " + teacherCarl.fullName + "'s average rating is now: " + teacherCarl.averageTeacherRating());
   } else {
     alert("You can always leave a review later!");
   }
 }
 
-
-// Add a new rating entered by the user to the passed array
-// function addTeacherRating(existingArray, newRating) {
-//   existingArray.push(newRating);
-//   return existingArray;
-// }
-// take some numbers and find the average
-// function averageStuff(existingArray) {
-//   //var averageRating; //= (rating1 + rating2 + rating3) / 3;
-//   var sumOfNumbers = 0;
-//   arrayTotal = existingArray.length;
-//   for( i=0; i < arrayTotal; i++) {
-//     sumOfNumbers += existingArray[i];
-//   }
-//   averageRating = sumOfNumbers / arrayTotal;
-//   roundedRating = Math.round(averageRating * 10) / 10;
-//   return roundedRating;
-// }
+// FUNCTIONS -------------------------------------
 //function to filter courses by the department
 function filterCourses(existingArray, selectedDepartment){
   //loop through all arrays in the selected array
@@ -147,7 +202,7 @@ function filterCourses(existingArray, selectedDepartment){
    for(i=0; i< arrayTotal; i++) {
      //if existingArray.nestedArray[1] value is equal to the selectedDepartment value
      //console.log(existingArray[i][1]);
-     if(existingArray[i][1] == selectedDepartment){
+     if(existingArray[i].courseDepartment == selectedDepartment){
        //push that value to a new array filteredArray
        filteredCoursesArray.push(existingArray[i]);
        //console.log(existingArray[i]);
@@ -180,16 +235,3 @@ function welcomeStudentsByGraduatingClass(gradMonth, gradYear, gradGreet) {
   }
   gradGreet(currentClass);
 }
-
-
-
-// console.log('Teacher: ' + teacherFullName);
-// console.log('Department: ' + departmentName);
-// console.log('Ratings: ' + rating1 + ', ' + rating2 + ', ' + rating3);
-// console.log('Average Rating: ' + roundedRating);
-// console.log('Student: ' + studentFullName);
-// console.log('Major: ' + studentMajor);
-// console.log('Email: ' + studentEmail);
-// console.log('GPA: ' + studentGpa);
-// console.log('Courses: ' + studentCourse1 + ', ' + studentCourse2);
-// console.log('Semester: ' + semester);
