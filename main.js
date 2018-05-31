@@ -1,6 +1,6 @@
 // GLOBAL VARIABLES ------------------------------
-var arrayTotal = 0;
-
+var arrayTotal = 0; //var for the length of an array
+var i = 0; //loop counter
 // OBJECT PROTOTYPES -----------------------------
 
 // ---TEACHERS---
@@ -77,14 +77,19 @@ Student.prototype = {
 
 // OBJECT INSTANCES-------------------------------
 var teacherCarl = new Teacher("Carl Henderson", "History", ["World History", "Chinese Classics"], [5.0, 4.0, 4.5]);
-var teacherEmmeline = new Teacher("Emmeline Howe", "Science", ["Astro-Biology", "Science of Star Wars"], [5.0, 4.0, 4.5]);
+var teacherEmmeline = new Teacher("Emmeline Howe", "Science", ["Astro-Biology", "Physics"], [5.0, 4.0, 4.5]);
 var teacherBrody = new Teacher("Brody Goodwin", "Mathematics", ["Calculus", "Algebra"], [5.0, 4.0, 4.5]);
+var teacherKrista = new Teacher("Krista Jefferson", "Art", ["Photography", "Design"], [5.0, 4.0, 4.5]);
+var teacherMaya = new Teacher("Maya Camden", "Science", ["Physics", "Chemistry"], [5.0, 4.0, 4.5]);
 
 var course1 = new Course("Astro-Biology", "Science", teacherEmmeline, "Fall 2018");
 var course2 = new Course("World History", "History", teacherCarl, "Fall 2018");
 var course3 = new Course("Calculus", "Mathematics", teacherBrody, "Fall 2018");
 var course4 = new Course("Mathematical Sculpture", "Art", teacherBrody, "Spring 2019");
 var course5 = new Course("Physics", "Science", teacherEmmeline, "Spring 2019");
+var course6 = new Course("Algebra", "Mathematics", teacherBrody, "Fall 2018");
+var course7 = new Course("Photography", "Art", teacherKrista, "Fall 2018");
+var course8 = new Course("Chemistry", "Science", teacherMaya, "Fall 2018");
 
 //(studentName, studentMajor, studentEmail, studentGpa, studentCourses)
 var student1 = new Student("Tilly Johnson", "Mathematics", "tjohnson@CGE.edu", 3.5, [course1, course2]);
@@ -92,7 +97,7 @@ var student2 = new Student("Lila Sullivan", "Biology", "lsullivan@CGE.edu", 3.6,
 var student3 = new Student("Bryson Mills", "Art", "bmills@CGE.edu", 3.4, [course2, course4]);
 
 // VARIABLES -------------------------------------
-var coursesArray = [course1, course2, course3, course4, course5];
+var coursesArray = [course1, course2, course3, course4, course5, course6, course7, course8];
 var filteredCoursesArray = [];
 var filteredCoursesString = "";
 
@@ -235,4 +240,54 @@ function welcomeStudentsByGraduatingClass(gradMonth, gradYear, gradGreet) {
       break;
   }
   gradGreet(currentClass);
+}
+
+// Dynamically create courses
+function updateCourseDisplay(arrayOfCourses){
+  arrayTotal = arrayOfCourses.length;
+  var coursesHtmlString = "";
+  //loop through the courses
+  for( i=0; i < arrayTotal; i++) {
+    // generate an html string for each course
+    coursesHtmlString += "<div class='courseBox'><div class='partA'><h2>";
+    coursesHtmlString += arrayOfCourses[i].courseDepartment + "</h2><h3>";
+    coursesHtmlString += arrayOfCourses[i].courseTitle + "</h3></div>";
+    coursesHtmlString += "<div class='partB'><p><strong>Teacher: </strong>";
+    coursesHtmlString += arrayOfCourses[i].courseTeacher.fullName + "</p>";
+    coursesHtmlString += "<p><strong>Semester: </strong>";
+    coursesHtmlString += arrayOfCourses[i].courseSemester + "</p></div></div><!-- end courseBox-->";
+  }
+  //alert(coursesHtmlString);
+  //$( document ).ready( handler )
+  $(function() {
+    // add coursesHtmlString to the HTML
+    $('#coursesContainer').append(coursesHtmlString);
+  });
+
+  /*
+  var teacherMaya = new Teacher("Maya Camden", "Science", ["Physics", "Chemistry"], [5.0, 4.0, 4.5]);
+  var course1 = new Course("Astro-Biology", "Science", teacherEmmeline, "Fall 2018");
+  this.courseTitle = course;
+  this.courseDepartment = department;
+  this.courseTeacher = teacher;
+  this.courseSemester = semester;
+
+  this.fullName = fullName;
+  this.department = departmentName;
+  this.teacherCourses = teacherCoursesArray;
+  this.ratingsArray = ratingsArray;
+
+  follow this format inside the 'boxContainer' div:
+    <div class='courseBox'>
+      <div class='partA'>
+        <h2>History</h2>
+        <h3>World History</h3>
+      </div>
+      <div class='partB'>
+        <p><strong>Teacher:</strong> Carl Henderson</p>
+        <p><strong>Semester:</strong> Fall 2018</p>
+      </div>
+
+    </div><!-- end courseBox-->
+    */
 }
