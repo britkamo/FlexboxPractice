@@ -116,89 +116,93 @@ var studentCourse2 = 'Econ 101';
 var semester = 'Fall 2018';
 var currentYear = 2018;
 
+// INITIAL FUNCTION CALLS ----------------------------------
+// update the courses displayed on the page
+updateCourseDisplay(coursesArray);
 
 // USER PROMPTS ----------------------------------
-var getGradYear = prompt("Please enter the college graduation year.", "Example: 2018");
-var getGradMonth = prompt("Please enter the college graduation month.", "Example: May or December");
+// var getGradYear = prompt("Please enter the college graduation year.", "Example: 2018");
+// var getGradMonth = prompt("Please enter the college graduation month.", "Example: May or December");
+//
+// var welcomeCollegeStudent = function(studentClass){
+//   alert("Welcome " + studentClass)+ "!";
+// }
+// var welcomeHsStudent = function(studentClass){
+//   alert("You're still a " + studentClass + " in high school!");
+// }
+//
+// if(getGradYear != null || getGradYear != ""){
+//   //if in college,
+//   //the graduation year will be within 4 years of the current year - 18,19,20,21
+//   //if in high school,
+//   //the graduation year will be within 8 years of the current year - 22,23,24,25
+//   if (getGradYear < 2021) {
+//     //console.log(welcomeCollegeStudent("Freshman"));
+//     console.log(welcomeStudentsByGraduatingClass(getGradMonth, getGradYear, welcomeCollegeStudent));
+//   } else if(getGradYear < 2025) {
+//     //console.log(welcomeHsStudent("Sophomore"));
+//     console.log(welcomeStudentsByGraduatingClass(getGradMonth, getGradYear, welcomeHsStudent));
+//   } else if (getGradYear > 2025){
+//     console.log("Whoa, college is some years away...");
+//   } else {
+//     console.log("Welcome visitor!");
+//   }
+// }
+//
+//
+// var userFilter = prompt("Please enter a department to view available courses.", "Example: Science");
+//
+// if(userFilter != null || userFilter != ""){
+//   filterCourses(coursesArray,userFilter);
+//   if(filteredCoursesArray[0]){
+//     filteredCoursesString = "Courses available in the " + userFilter + " department include: \n";
+//     for ( i=0; i< filteredCoursesArray.length; i++){
+//         //console.log(filteredCoursesArray[i]);
+//         filteredCoursesString += filteredCoursesArray[i].courseTitle + "\n";
+//     }
+//     alert(filteredCoursesString);
+//   } else {
+//     filteredCoursesString = "Sorry, that department doesn't exist or has no available courses!";
+//     var userFilter2 = prompt("Please try again. Enter a department to view available courses.", "Example: Art");
+//     if(userFilter2 != null || userFilter2 != ""){
+//       filterCourses(coursesArray,userFilter2);
+//       if(filteredCoursesArray[0]){
+//         filteredCoursesString = "Courses available in the " + userFilter2 + " department include: \n";
+//         for ( i=0; i< filteredCoursesArray.length; i++){
+//             //console.log(filteredCoursesArray[i]);
+//             filteredCoursesString += filteredCoursesArray[i].courseTitle + "\n";
+//         }
+//         alert(filteredCoursesString);
+//       }
+//     }
+//   }
+// }
+//
+// var userRating = prompt("We would like for you to review . Please enter a rating between 0.0 - 5.0.", "0-5");
+//
+//
+// if(userRating == null) {
+//   alert("You can always leave a review later!");
+// } else if(userRating >= 0 && userRating <= 5) {
+//   userRating = Math.floor(userRating);
+//   //addTeacherRating(ratingsArray, userRating);
+//   //console.log(teacherCarl.averageTeacherRating());
+//   teacherCarl.addRating(userRating);
+//   //averageStuff(ratingsArray);
+//   //console.log(teacherCarl.averageTeacherRating());
+//   alert("Thanks for your review! " + teacherCarl.fullName + "'s average rating is now: " + teacherCarl.averageTeacherRating());
+// } else {
+//   userRating = prompt("We won't ask again but would really appreciate your review . Please make sure your rating is between 0.0 - 5.0.", "0-5");
+//   if(userRating == null) {
+//     alert("You can always leave a review later!");
+//   } else if(userRating >= 0 && userRating <= 5) {
+//     teacherCarl.addRating(userRating);
+//     alert("Thanks for your review! " + teacherCarl.fullName + "'s average rating is now: " + teacherCarl.averageTeacherRating());
+//   } else {
+//     alert("You can always leave a review later!");
+//   }
+// }
 
-var welcomeCollegeStudent = function(studentClass){
-  alert("Welcome " + studentClass)+ "!";
-}
-var welcomeHsStudent = function(studentClass){
-  alert("You're still a " + studentClass + " in high school!");
-}
-
-if(getGradYear != null || getGradYear != ""){
-  //if in college,
-  //the graduation year will be within 4 years of the current year - 18,19,20,21
-  //if in high school,
-  //the graduation year will be within 8 years of the current year - 22,23,24,25
-  if (getGradYear < 2021) {
-    //console.log(welcomeCollegeStudent("Freshman"));
-    console.log(welcomeStudentsByGraduatingClass(getGradMonth, getGradYear, welcomeCollegeStudent));
-  } else if(getGradYear < 2025) {
-    //console.log(welcomeHsStudent("Sophomore"));
-    console.log(welcomeStudentsByGraduatingClass(getGradMonth, getGradYear, welcomeHsStudent));
-  } else if (getGradYear > 2025){
-    console.log("Whoa, college is some years away...");
-  } else {
-    console.log("Welcome visitor!");
-  }
-}
-
-
-var userFilter = prompt("Please enter a department to view available courses.", "Example: Science");
-
-if(userFilter != null || userFilter != ""){
-  filterCourses(coursesArray,userFilter);
-  if(filteredCoursesArray[0]){
-    filteredCoursesString = "Courses available in the " + userFilter + " department include: \n";
-    for ( i=0; i< filteredCoursesArray.length; i++){
-        //console.log(filteredCoursesArray[i]);
-        filteredCoursesString += filteredCoursesArray[i].courseTitle + "\n";
-    }
-    alert(filteredCoursesString);
-  } else {
-    filteredCoursesString = "Sorry, that department doesn't exist or has no available courses!";
-    var userFilter2 = prompt("Please try again. Enter a department to view available courses.", "Example: Art");
-    if(userFilter2 != null || userFilter2 != ""){
-      filterCourses(coursesArray,userFilter2);
-      if(filteredCoursesArray[0]){
-        filteredCoursesString = "Courses available in the " + userFilter2 + " department include: \n";
-        for ( i=0; i< filteredCoursesArray.length; i++){
-            //console.log(filteredCoursesArray[i]);
-            filteredCoursesString += filteredCoursesArray[i].courseTitle + "\n";
-        }
-        alert(filteredCoursesString);
-      }
-    }
-  }
-}
-
-var userRating = prompt("We would like for you to review . Please enter a rating between 0.0 - 5.0.", "0-5");
-
-
-if(userRating == null) {
-  alert("You can always leave a review later!");
-} else if(userRating >= 0 && userRating <= 5) {
-  userRating = Math.floor(userRating);
-  //addTeacherRating(ratingsArray, userRating);
-  //console.log(teacherCarl.averageTeacherRating());
-  teacherCarl.addRating(userRating);
-  //averageStuff(ratingsArray);
-  //console.log(teacherCarl.averageTeacherRating());
-  alert("Thanks for your review! " + teacherCarl.fullName + "'s average rating is now: " + teacherCarl.averageTeacherRating());
-} else {
-  userRating = prompt("We won't ask again but would really appreciate your review . Please make sure your rating is between 0.0 - 5.0.", "0-5");
-  if(userRating == null) {
-    alert("You can always leave a review later!");
-  } else if(userRating >= 0 && userRating <= 5) {
-    teacherCarl.addRating(userRating);
-    alert("Thanks for your review! " + teacherCarl.fullName + "'s average rating is now: " + teacherCarl.averageTeacherRating());
-  } else {
-    alert("You can always leave a review later!");
-  }
-}
 
 // FUNCTIONS -------------------------------------
 //function to filter courses by the department
@@ -263,31 +267,4 @@ function updateCourseDisplay(arrayOfCourses){
     // add coursesHtmlString to the HTML
     $('#coursesContainer').append(coursesHtmlString);
   });
-
-  /*
-  var teacherMaya = new Teacher("Maya Camden", "Science", ["Physics", "Chemistry"], [5.0, 4.0, 4.5]);
-  var course1 = new Course("Astro-Biology", "Science", teacherEmmeline, "Fall 2018");
-  this.courseTitle = course;
-  this.courseDepartment = department;
-  this.courseTeacher = teacher;
-  this.courseSemester = semester;
-
-  this.fullName = fullName;
-  this.department = departmentName;
-  this.teacherCourses = teacherCoursesArray;
-  this.ratingsArray = ratingsArray;
-
-  follow this format inside the 'boxContainer' div:
-    <div class='courseBox'>
-      <div class='partA'>
-        <h2>History</h2>
-        <h3>World History</h3>
-      </div>
-      <div class='partB'>
-        <p><strong>Teacher:</strong> Carl Henderson</p>
-        <p><strong>Semester:</strong> Fall 2018</p>
-      </div>
-
-    </div><!-- end courseBox-->
-    */
 }

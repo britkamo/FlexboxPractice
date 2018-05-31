@@ -110,7 +110,7 @@ nav{
   align-content: center;
   justify-content: space-around;
 }
-.teacherBox, .studentBox, .courseBox {
+.teacherBox, .studentBox, .courseBox, .filterBox {
   background-color: #b7f0ed;
   /* border: 2px solid #ec9595; */
   margin-top: 20px;
@@ -123,6 +123,13 @@ nav{
   flex-direction: row;
   flex-basis: 48%;
   justify-content: space-evenly;
+  align-items: center;
+}
+.filterBox {
+  flex-direction: row;
+  flex-basis: 50%;
+  justify-content: space-evenly;
+  background-color: #ec9595;
   align-items: center;
 }
 .t_profile, .t_info {

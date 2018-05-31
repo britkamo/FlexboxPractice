@@ -2,7 +2,7 @@
     <head>
         <title>CGE Courses</title>
         <meta content="width=device-width,maximum-scale=1.0,initial-scale=1.0,minimum-scale=1.0,user-scalable=yes" name="viewport">
-        <script src='main.js'></script>
+
         <link href="https://fonts.googleapis.com/css?family=Chathura|Londrina+Shadow|Open+Sans" rel="stylesheet">
         <link href='main.css' media='all' rel='stylesheet'>
     </head>
@@ -17,6 +17,27 @@
         </div>
       </nav>
 
+      <div class='boxContainer'>
+        <div class='filterBox'>
+          <h2>Filters</h2>
+          <select name="departmentDropDown" id="departmentFiltering">
+            <option value="all" selected>All Departments</option>
+            <option value="Art">Art</option>
+            <option value="History">History</option>
+            <option value="Mathematics">Mathematics</option>
+            <option value="Science">Science</option>
+
+          </select>
+          <select name="semesterDropDown" id="semesterFiltering">
+            <option value="any" selected>Any Semester</option>
+            <option value="Fall 2018">Fall 2018</option>
+            <option value="Spring 2019">Spring 2019</option>
+          </select>
+
+          <button>Filter Classes</button>
+        </div>
+      </div>
+
       <div class='boxContainer' id='coursesContainer'>
         <!-- <div class='courseBox'>
           <div class='partA'>
@@ -30,8 +51,9 @@
 
         </div> end courseBox-->
 
-        
+
       </div><!--end boxContainer-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src='main.js'></script>
     </body>
 </html>
