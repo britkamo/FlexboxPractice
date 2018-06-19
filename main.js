@@ -266,5 +266,11 @@ function updateCourseDisplay(arrayOfCourses){
   $(function() {
     // add coursesHtmlString to the HTML
     $('#coursesContainer').append(coursesHtmlString);
+
+    // listener for the filter courses button
+    $('#courseFilterBox button').on( "click", function( event ) {
+      console.log($('this').closest);
+    });
+
   });
 }
